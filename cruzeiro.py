@@ -19,7 +19,7 @@ pw.send_keys(os.getenv('PASSWORD'))
 
 driver.find_element(By.XPATH, '//button[text()=" ENTRAR "]').click()
 
-time.sleep(2)
+time.sleep(3)
 driver.find_element(By.XPATH, '//a[text()=" EXPERIÊNCIAS "]').click()
 
 def run_alarm():
@@ -29,8 +29,14 @@ def run_alarm():
     mixer.music.play()
     time.sleep(3)
 
-run_alarm()
-run_alarm()
-run_alarm()
+time.sleep(3)
+cards = driver.find_elements(By.TAG_NAME, 'fengstexperience-catalog-card-template-1')
+for card in cards:
+    btn1 = card.find_element(By.XPATH, '//button[text()=" RESGATE "]').is_displayed()
+    btn2 = card.find_element(By.XPATH, '//button[text()=" RESGATAR "]').is_displayed()
+    if(btn1 or btn2)
+        run_alarm()
+        run_alarm()
+        run_alarm()
 
 driver.quit()
