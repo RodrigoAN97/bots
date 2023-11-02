@@ -29,14 +29,19 @@ def run_alarm():
     mixer.music.play()
     time.sleep(3)
 
-time.sleep(3)
-cards = driver.find_elements(By.TAG_NAME, 'fengstexperience-catalog-card-template-1')
-for card in cards:
-    btn1 = card.find_element(By.XPATH, '//button[text()=" RESGATE "]').is_displayed()
-    btn2 = card.find_element(By.XPATH, '//button[text()=" RESGATAR "]').is_displayed()
-    if(btn1 or btn2):
-        run_alarm()
-        run_alarm()
-        run_alarm()
+def find_rescues():
+    time.sleep(3)
+    driver.refresh()
+    cards = driver.find_elements(By.TAG_NAME, 'fengstexperience-catalog-card-template-1')
+    for card in cards:
+        btn1 = card.find_element(By.XPATH, '//button[text()=" RESGATE "]').is_displayed()
+        btn2 = card.find_element(By.XPATH, '//button[text()=" RESGATAR "]').is_displayed()
+        if(btn1 or btn2):
+            run_alarm()
+            run_alarm()
+            run_alarm()
+        else:
+            print('Not found')
 
-driver.quit()
+while True:
+    find_rescues()
