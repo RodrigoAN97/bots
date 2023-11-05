@@ -34,14 +34,23 @@ def find_rescues():
     driver.refresh()
     cards = driver.find_elements(By.TAG_NAME, 'fengstexperience-catalog-card-template-1')
     for card in cards:
-        btn1 = card.find_element(By.XPATH, '//button[text()=" RESGATE "]').is_displayed()
-        btn2 = card.find_element(By.XPATH, '//button[text()=" RESGATAR "]').is_displayed()
-        if(btn1 or btn2):
+        try:
+            btn1 = card.find_element(By.XPATH, '//button[text()=" RESGATE "]').is_displayed()
+            print('btn1', btn1)
             run_alarm()
             run_alarm()
             run_alarm()
-        else:
-            print('Not found')
+        except:
+            print('btn1 not found')
+
+        try:
+            btn2 = card.find_element(By.XPATH, '//button[text()=" RESGATAR "]').is_displayed()
+            print('btn2', btn2)
+            run_alarm()
+            run_alarm()
+            run_alarm()
+        except:
+            print('btn2 not found')
 
 while True:
     find_rescues()
