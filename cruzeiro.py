@@ -22,23 +22,26 @@ driver.find_element(By.XPATH, '//button[text()=" ENTRAR "]').click()
 time.sleep(3)
 driver.find_element(By.XPATH, '//a[text()=" EXPERIÊNCIAS "]').click()
 
-def run_alarm():
+def alarm():
     mixer.init()
     mixer.music.load('loudalarm.mp3')
     mixer.music.set_volume(1)
     mixer.music.play()
     time.sleep(3)
 
+def run_alarm():
+    while True:
+        alarm()
+
 def find_rescues():
     time.sleep(3)
     driver.refresh()
+    print('REFRESH AND TRY AGAIN')
     cards = driver.find_elements(By.TAG_NAME, 'fengstexperience-catalog-card-template-1')
     for card in cards:
         try:
             btn1 = card.find_element(By.XPATH, '//button[text()=" RESGATE "]').is_displayed()
             print('btn1', btn1)
-            run_alarm()
-            run_alarm()
             run_alarm()
         except:
             print('btn1 not found')
@@ -46,8 +49,6 @@ def find_rescues():
         try:
             btn2 = card.find_element(By.XPATH, '//button[text()=" RESGATAR "]').is_displayed()
             print('btn2', btn2)
-            run_alarm()
-            run_alarm()
             run_alarm()
         except:
             print('btn2 not found')
